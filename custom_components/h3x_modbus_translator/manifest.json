@@ -1,6 +1,7 @@
 {
   "domain": "h3x_modbus_translator",
   "name": "H3X Modbus Translator",
+  "categories": ["energy.meters_monitoring"],
   "codeowners": ["@shufflez", "@shuffleznl", "@openai"],
   "config_flow": true,
   "documentation": "https://github.com/shuffleznl/h3x-modbus-translator",
