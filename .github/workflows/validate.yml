@@ -14,6 +14,10 @@ jobs:
       - run: uv run pytest -q
       - name: Install actual HA contract runtime
         run: uv pip install homeassistant==2026.10.4
+      - uses: actions/checkout@v4
+        with:
+          repository: shuffleznl/h3x-predictive-dispatch
+          path: predictive-contract
       - name: Validate HA entity IDs, flow schemas and dashboards
         run: uv run --no-sync pytest tests/test_ha_contract.py -q
   hacs:
