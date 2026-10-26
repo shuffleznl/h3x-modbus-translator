@@ -65,9 +65,10 @@ identifies this software, not a genuine Eastron meter.
 ## Install With HACS
 
 Requires Home Assistant **2026.10.4+**, a Shelly operating in three-phase mode,
-and enabled Shelly Modbus TCP. This release uses the same `pymodbus==3.13.1` as
-HA 2026.10.4. Revalidate dependency compatibility before upgrading to an HA release
-that changes that version; do not override a different core Modbus requirement.
+and enabled Shelly Modbus TCP. Validation pins `pymodbus==3.13.1`, matching
+HA 2026.10.4. The runtime requirement is `pymodbus>=3.13.1,<4` so it can follow
+HA's core dependency rather than forcing a conflicting exact version. New library
+versions still need validation; this release does not certify every future 3.x API.
 
 1. HACS > Custom repositories: add `https://github.com/shuffleznl/h3x-modbus-translator`, category **Integration**.
 2. Download the tagged release and restart HA once.

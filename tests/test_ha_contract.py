@@ -235,7 +235,7 @@ def test_hacs_package_has_only_its_own_domain():
     assert manifest["domain"] == DOMAIN
     assert manifest["config_flow"]
     assert manifest["version"] == "0.1.0"
-    assert manifest["requirements"] == ["pymodbus==3.13.1"]
+    assert manifest["requirements"] == ["pymodbus>=3.13.1,<4"]
     assert json.loads((ROOT / "hacs.json").read_text())["homeassistant"] == "2026.10.4"
     assert (COMPONENT / "translations/en.json").exists()
     assert (COMPONENT / "brand/icon.png").read_bytes().startswith(b"\x89PNG\r\n\x1a\n")
