@@ -1,0 +1,25 @@
+name: Validate
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v7
+      - run: uv sync --group dev
+      - run: uv run ruff check .
+      - run: uv run pytest -q
+      - name: Install actual HA contract runtime
+        run: uv pip install homeassistant==2026.10.4
+      - name: Validate HA entity IDs, flow schemas and dashboards
+        run: uv run --no-sync pytest tests/test_ha_contract.py -q
+  hacs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hacs/action@main
+        with:
+          category: integration

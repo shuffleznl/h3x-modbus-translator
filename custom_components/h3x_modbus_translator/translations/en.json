@@ -1,0 +1,52 @@
+{
+  "title": "H3X Modbus Translator",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Shelly to SDM630 meter translator",
+        "description": "Serves a read-only SDM630 subset. The H3X meter port is RS485, not a TCP meter client: a reverse RTU-to-TCP gateway is required for that port. This integration does not change inverter settings or fix forced charging. Enable Modbus on Shelly first. Only explicitly allowed client IPs/CIDRs can read the listener. Offline sources appear unavailable, never as zero. Connection settings can be changed later.",
+        "data": {
+          "host": "Shelly hostname or IP",
+          "source_port": "Shelly TCP port",
+          "source_unit": "Shelly unit ID",
+          "listen_host": "HA bind IP (0.0.0.0 = all IPv4 interfaces)",
+          "listen_port": "HA listener TCP port",
+          "meter_unit": "Emulated SDM630 unit ID",
+          "allowed_clients": "Allowed client IPs/CIDRs (comma separated)",
+          "poll_seconds": "Polling interval",
+          "stale_seconds": "Maximum source age",
+          "reverse_power": "Reverse ALL phases and swap import/export energy"
+        }
+      }
+    },
+    "error": {
+      "invalid_settings": "Check host, bind IP, ports, unit IDs and client CIDRs. Maximum source age must be at least 3 polling intervals."
+    },
+    "abort": {
+      "already_configured": "One translator is already configured; edit its settings instead."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Translator network settings",
+        "description": "Changing these settings restarts the translator listener, not Home Assistant. Use a static gateway/client IP. There is no H3X TCP meter-client setting; its RS485 meter port still requires a reverse gateway.",
+        "data": {
+          "host": "Shelly hostname or IP",
+          "source_port": "Shelly TCP port",
+          "source_unit": "Shelly unit ID",
+          "listen_host": "HA bind IP",
+          "listen_port": "HA listener TCP port",
+          "meter_unit": "Emulated SDM630 unit ID",
+          "allowed_clients": "Allowed client IPs/CIDRs (comma separated)",
+          "poll_seconds": "Polling interval",
+          "stale_seconds": "Maximum source age",
+          "reverse_power": "Reverse ALL phases and swap import/export energy"
+        }
+      }
+    },
+    "error": {
+      "invalid_settings": "Check the network settings. Maximum source age must be at least 3 polling intervals."
+    }
+  }
+}

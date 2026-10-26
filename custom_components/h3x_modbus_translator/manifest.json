@@ -1,0 +1,13 @@
+{
+  "domain": "h3x_modbus_translator",
+  "name": "H3X Modbus Translator",
+  "codeowners": ["@shufflez", "@shuffleznl", "@openai"],
+  "config_flow": true,
+  "documentation": "https://github.com/shuffleznl/h3x-modbus-translator",
+  "integration_type": "hub",
+  "iot_class": "local_polling",
+  "issue_tracker": "https://github.com/shuffleznl/h3x-modbus-translator/issues",
+  "loggers": ["pymodbus"],
+  "requirements": ["pymodbus==3.13.1"],
+  "version": "0.1.0"
+}

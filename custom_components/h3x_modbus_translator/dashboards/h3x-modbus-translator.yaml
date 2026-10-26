@@ -1,0 +1,84 @@
+title: H3X Modbus Translator
+views:
+  - title: Meter translator
+    path: meter-translator
+    icon: mdi:swap-horizontal
+    type: sections
+    max_columns: 2
+    sections:
+      - type: grid
+        cards:
+          - type: heading
+            heading: Connection and health
+            icon: mdi:lan-connect
+          - type: entities
+            title: Shelly to SDM630
+            show_header_toggle: false
+            entities:
+              - entity: sensor.h3x_modbus_translator_status
+                name: Translator status
+              - entity: sensor.h3x_modbus_translator_profile
+                name: Register profile
+              - entity: sensor.h3x_modbus_translator_endpoint
+                name: HA listener address (not the inverter)
+              - entity: binary_sensor.h3x_modbus_translator_server_listening
+                name: TCP listener
+              - entity: binary_sensor.h3x_modbus_translator_source_online
+                name: Shelly measurements fresh
+              - entity: binary_sensor.h3x_modbus_translator_client_active
+                name: Client requests within 30 seconds
+              - entity: sensor.h3x_modbus_translator_data_age
+                name: Source data age
+              - type: attribute
+                entity: sensor.h3x_modbus_translator_profile
+                attribute: physical_h3x_meter_connection
+                name: H3X meter connection
+              - type: button
+                name: Configure translator
+                icon: mdi:cog
+                tap_action:
+                  action: navigate
+                  navigation_path: /config/integrations/integration/h3x_modbus_translator
+      - type: grid
+        cards:
+          - type: heading
+            heading: Measured power
+            icon: mdi:transmission-tower
+          - type: entities
+            show_header_toggle: false
+            entities:
+              - entity: sensor.h3x_modbus_translator_grid_power
+                name: Signed power (+ import, - export)
+              - entity: sensor.h3x_modbus_translator_grid_import
+                name: Import power
+              - entity: sensor.h3x_modbus_translator_grid_export
+                name: Export power
+          - type: history-graph
+            title: Translated grid power
+            hours_to_show: 6
+            entities:
+              - entity: sensor.h3x_modbus_translator_grid_power
+                name: Grid power
+      - type: grid
+        column_span: 2
+        cards:
+          - type: heading
+            heading: Energy and diagnostics
+            icon: mdi:counter
+          - type: entities
+            show_header_toggle: false
+            entities:
+              - entity: sensor.h3x_modbus_translator_import_energy
+                name: Shelly import counter
+              - entity: sensor.h3x_modbus_translator_export_energy
+                name: Shelly export counter
+              - entity: sensor.h3x_modbus_translator_requests
+                name: Requests reaching register policy
+              - entity: sensor.h3x_modbus_translator_rejected_requests
+                name: Rejected requests / connections
+              - entity: sensor.h3x_modbus_translator_poll_errors
+                name: Shelly poll failures
+              - entity: sensor.h3x_modbus_translator_last_client_request
+                name: Last client request
+              - entity: sensor.h3x_modbus_translator_last_error
+                name: Last source error
